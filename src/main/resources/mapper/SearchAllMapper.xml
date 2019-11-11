@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gwjjj.mapper.SearchAllMapper">
+	<select id="selectMusicBySearchText" parameterType="java.lang.String"
+		resultType="cn.gwjjj.model.MusicDatails">
+		SELECT *
+		FROM music_datails
+		WHERE
+		music_datails.MUSIC_NAME
+		LIKE '%${_parameter}%'
+
+	</select>
+	<select id="selectPlaylistBySearchText" parameterType="java.lang.String"
+		resultType="cn.gwjjj.model.PlaylistDetails">
+		SELECT *
+		FROM
+		playlist_details
+		WHERE
+		playlist_details.PLAYLIST_NAME LIKE '%${_parameter}%'
+
+	</select>
+	<select id="selectPlayerBySearchText" parameterType="java.lang.String"
+		resultType="cn.gwjjj.model.PlayerDatails">
+		SELECT *
+		FROM
+		player_datails
+		WHERE
+		player_datails.PLAYER_NAME LIKE '%${_parameter}%'
+
+	</select>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gwjjj.mapper.MusicOrderMapper">
+	<select id="countAllByHot" resultType="cn.gwjjj.model.MusicDatails">
+		SELECT * FROM
+		music_datails ORDER BY music_datails.MUSIC_HOT DESC
+	</select>
+	<select id="countAllByCreateTime" resultType="cn.gwjjj.model.MusicDatails">
+		SELECT * FROM
+		music_datails ORDER BY music_datails.MUSIC_CREATE DESC
+	</select>
+	<select id="countAsiaByHot" resultType="cn.gwjjj.model.MusicDatails">
+		SELECT * FROM
+		music_datails WHERE music_datails.MUSIC_PLACE = 1 ORDER BY
+		music_datails.MUSIC_HOT DESC
+	</select>
+	<select id="countAmericaByHot" resultType="cn.gwjjj.model.MusicDatails">
+		SELECT * FROM
+		music_datails WHERE music_datails.MUSIC_PLACE = 2 ORDER BY
+		music_datails.MUSIC_HOT DESC
+	</select>
+	<select id="countJapanAndKoreaaByHot" resultType="cn.gwjjj.model.MusicDatails">
+		SELECT * FROM
+		music_datails WHERE music_datails.MUSIC_PLACE = 3 ORDER BY
+		music_datails.MUSIC_HOT DESC
+	</select>
+</mapper>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gwjjj.mapper.PlayerDatailsMapper" >
+  <resultMap id="BaseResultMap" type="cn.gwjjj.model.PlayerDatails" >
+    <id column="PLAYER_ID" property="playerId" jdbcType="INTEGER" />
+    <result column="PLAYER_NAME" property="playerName" jdbcType="VARCHAR" />
+    <result column="PLAYER_CON" property="playerCon" jdbcType="INTEGER" />
+    <result column="PLAYER_BD" property="playerBd" jdbcType="TIMESTAMP" />
+    <result column="PLAYER_INFO" property="playerInfo" jdbcType="VARCHAR" />
+    <result column="PLAYER_HOT" property="playerHot" jdbcType="INTEGER" />
+    <result column="PLAYER_IMG" property="playerImg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PLAYER_ID, PLAYER_NAME, PLAYER_CON, PLAYER_BD, PLAYER_INFO, PLAYER_HOT, PLAYER_IMG
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.gwjjj.model.PlayerDatailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from player_datails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from player_datails
+    where PLAYER_ID = #{playerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from player_datails
+    where PLAYER_ID = #{playerId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.gwjjj.model.PlayerDatailsExample" >
+    delete from player_datails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.gwjjj.model.PlayerDatails" >
+    insert into player_datails (PLAYER_ID, PLAYER_NAME, PLAYER_CON, 
+      PLAYER_BD, PLAYER_INFO, PLAYER_HOT, 
+      PLAYER_IMG)
+    values (#{playerId,jdbcType=INTEGER}, #{playerName,jdbcType=VARCHAR}, #{playerCon,jdbcType=INTEGER}, 
+      #{playerBd,jdbcType=TIMESTAMP}, #{playerInfo,jdbcType=VARCHAR}, #{playerHot,jdbcType=INTEGER}, 
+      #{playerImg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.gwjjj.model.PlayerDatails" >
+    insert into player_datails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="playerId != null" >
+        PLAYER_ID,
+      </if>
+      <if test="playerName != null" >
+        PLAYER_NAME,
+      </if>
+      <if test="playerCon != null" >
+        PLAYER_CON,
+      </if>
+      <if test="playerBd != null" >
+        PLAYER_BD,
+      </if>
+      <if test="playerInfo != null" >
+        PLAYER_INFO,
+      </if>
+      <if test="playerHot != null" >
+        PLAYER_HOT,
+      </if>
+      <if test="playerImg != null" >
+        PLAYER_IMG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="playerId != null" >
+        #{playerId,jdbcType=INTEGER},
+      </if>
+      <if test="playerName != null" >
+        #{playerName,jdbcType=VARCHAR},
+      </if>
+      <if test="playerCon != null" >
+        #{playerCon,jdbcType=INTEGER},
+      </if>
+      <if test="playerBd != null" >
+        #{playerBd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="playerInfo != null" >
+        #{playerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="playerHot != null" >
+        #{playerHot,jdbcType=INTEGER},
+      </if>
+      <if test="playerImg != null" >
+        #{playerImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.gwjjj.model.PlayerDatailsExample" resultType="java.lang.Integer" >
+    select count(*) from player_datails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update player_datails
+    <set >
+      <if test="record.playerId != null" >
+        PLAYER_ID = #{record.playerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.playerName != null" >
+        PLAYER_NAME = #{record.playerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playerCon != null" >
+        PLAYER_CON = #{record.playerCon,jdbcType=INTEGER},
+      </if>
+      <if test="record.playerBd != null" >
+        PLAYER_BD = #{record.playerBd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.playerInfo != null" >
+        PLAYER_INFO = #{record.playerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playerHot != null" >
+        PLAYER_HOT = #{record.playerHot,jdbcType=INTEGER},
+      </if>
+      <if test="record.playerImg != null" >
+        PLAYER_IMG = #{record.playerImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update player_datails
+    set PLAYER_ID = #{record.playerId,jdbcType=INTEGER},
+      PLAYER_NAME = #{record.playerName,jdbcType=VARCHAR},
+      PLAYER_CON = #{record.playerCon,jdbcType=INTEGER},
+      PLAYER_BD = #{record.playerBd,jdbcType=TIMESTAMP},
+      PLAYER_INFO = #{record.playerInfo,jdbcType=VARCHAR},
+      PLAYER_HOT = #{record.playerHot,jdbcType=INTEGER},
+      PLAYER_IMG = #{record.playerImg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gwjjj.model.PlayerDatails" >
+    update player_datails
+    <set >
+      <if test="playerName != null" >
+        PLAYER_NAME = #{playerName,jdbcType=VARCHAR},
+      </if>
+      <if test="playerCon != null" >
+        PLAYER_CON = #{playerCon,jdbcType=INTEGER},
+      </if>
+      <if test="playerBd != null" >
+        PLAYER_BD = #{playerBd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="playerInfo != null" >
+        PLAYER_INFO = #{playerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="playerHot != null" >
+        PLAYER_HOT = #{playerHot,jdbcType=INTEGER},
+      </if>
+      <if test="playerImg != null" >
+        PLAYER_IMG = #{playerImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PLAYER_ID = #{playerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gwjjj.model.PlayerDatails" >
+    update player_datails
+    set PLAYER_NAME = #{playerName,jdbcType=VARCHAR},
+      PLAYER_CON = #{playerCon,jdbcType=INTEGER},
+      PLAYER_BD = #{playerBd,jdbcType=TIMESTAMP},
+      PLAYER_INFO = #{playerInfo,jdbcType=VARCHAR},
+      PLAYER_HOT = #{playerHot,jdbcType=INTEGER},
+      PLAYER_IMG = #{playerImg,jdbcType=VARCHAR}
+    where PLAYER_ID = #{playerId,jdbcType=INTEGER}
+  </update>
+</mapper>
